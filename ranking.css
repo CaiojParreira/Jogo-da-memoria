@@ -1,0 +1,55 @@
+body{
+    font-family: Arial, sans-serif;
+    text-align: center;
+    background-image: url('../imagens/fundo2pokemon.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+}
+h1{
+    font-size: 36px;
+    color: #333;
+    margin: 20px 0;
+}
+.ranking-list{
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    text-align: left;
+    width: 500px;
+    margin: 0 auto;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    background-color: #908c8c;
+    padding-bottom: 20px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    overflow: hidden;
+    height: 500px;
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+.ranking-list li{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    margin: 10px;
+    padding: 10px;
+    background-color: #ffffff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+a{ 
+    display: block;
+    font-size: 16px;
+    color: #007bff;
+    text-decoration: none;
+    margin-top: 20px;
+}
+.clear-button{
+    display: block;
+    font-size: 16px;
+    text-decoration: none;
+    margin-top: 900px;
+    cursor: pointer; 
+}

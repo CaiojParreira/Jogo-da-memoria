@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="ranking.css">
+    <title>Ranking</title>
+</head>
+<body>
+    <h1>RANKING</h1>
+    <ul class="ranking-list">
+        <script>
+            document.addEventListener('DOMContentLoaded', function () {
+                const rankingList = document.querySelector('.ranking-list');
+
+                const players = JSON.parse(localStorage.getItem('players')) || [];
+
+                players.sort((a, b) => a.tempo - b.tempo);
+
+                players.forEach((player, index) => {
+                    const li = document.createElement('li');
+                    li.textContent = `${index + 1}. ${player.nome} - Tempo: ${player.tempo} segundos`;
+                    rankingList.appendChild(li);
+                });
+            });
+        </script>
+    </ul>
+    <a href="index.html">Voltar para a página de login</a>
+    <button id="clear-ranking" class="clear-button">Limpar Ranking</button>
+    <script>
+        const clearButton = document.getElementById('clear-ranking');
+        clearButton.addEventListener('click', function () {
+            localStorage.removeItem('players');
+            location.reload();
+        });
+    </script>
+</body>
+</html>
