@@ -1,13 +1,14 @@
 body{
     font-family: Arial, sans-serif;
     text-align: center;
-    background-image: url('../imagens/fundo2pokemon.jpg');
+    background-image: url('imagens/img3.jpg');
     background-repeat: no-repeat;
     background-size: cover;
     background-attachment: fixed;
+    background-position: center;
 }
 h1{
-    font-size: 36px;
+    font-size: 60px;
     color: #333;
     margin: 20px 0;
 }
@@ -50,6 +51,6 @@ a{
     display: block;
     font-size: 16px;
     text-decoration: none;
-    margin-top: 900px;
+    margin-top: 100px;
     cursor: pointer; 
 }
