@@ -2,7 +2,7 @@ main{
     display: flex;
     flex-direction:column;
     width: 100%;
-    background-image: url("../Imagens/img1.jpg");
+    background-image: url("imagens/img1.jpg");
     background-size: 100%;
     background-position: center;
     min-height: 100vh;
@@ -33,7 +33,7 @@ header{
     aspect-ratio: 3/4;
     width: 140px;
     height: auto;
-    background-image: url("../Imagens/bgcard2.png");
+    background-image: url("imagens/bgcard2.png");
     border-radius: 5px;
     position:relative;
     transition: all 350ms ease;
@@ -55,7 +55,7 @@ header{
     align-items: flex-end;
 }
 .back{
-    background-image: url("../Imagens/bgpokemon.jpg");
+    background-image: url("imagens/bgpokemon.jpg");
     background-position: center;
     background-size: cover;
     backface-visibility: hidden;
