@@ -1,24 +1,25 @@
 body{
     font-family: Arial, sans-serif;
     text-align: center;
-    background-image: url('imagens/img3.jpg');
+    background-image: url('imagens/fundo2pokemon.jpg');
     background-repeat: no-repeat;
     background-size: cover;
     background-attachment: fixed;
-    background-position: center;
+    padding: 20px 15px;
+    box-sizing: border-box;
 }
 h1{
-    font-size: 60px;
+    font-size: clamp(24px, 6vw, 36px);
     color: #333;
     margin: 20px 0;
 }
 .ranking-list{
     list-style: none;
     padding: 0;
-    margin: 0;
-    text-align: left;
-    width: 500px;
     margin: 0 auto;
+    text-align: left;
+    width: 100%;
+    max-width: 500px;
     border-radius: 5px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
     background-color: #908c8c;
@@ -26,19 +27,22 @@ h1{
     margin-top: 20px;
     margin-bottom: 20px;
     overflow: hidden;
-    height: 500px;
+    max-height: 500px;
     overflow-y: scroll;
     overflow-x: hidden;
+    box-sizing: border-box;
 }
 .ranking-list li{
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 18px;
+    font-size: clamp(14px, 4vw, 18px);
     margin: 10px;
     padding: 10px;
     background-color: #ffffff;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    word-break: break-word;
 }
 a{ 
     display: block;
@@ -51,6 +55,6 @@ a{
     display: block;
     font-size: 16px;
     text-decoration: none;
-    margin-top: 100px;
+    margin: 20px auto 0;
     cursor: pointer; 
 }
