@@ -18,6 +18,7 @@ const characters = [
   'snorlax',
   'vulpix',
   'wartortle',
+  'gengar'
 ];
 
 const createElement = (tag, className) => {
