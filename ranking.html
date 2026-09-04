@@ -4,35 +4,80 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="imagens/pikachu_icon.png">
+    <link rel="stylesheet" href="reset.css">
     <link rel="stylesheet" href="ranking.css">
     <title>Ranking</title>
 </head>
 <body>
-    <h1>RANKING</h1>
-    <ul class="ranking-list">
-        <script>
-            document.addEventListener('DOMContentLoaded', function () {
-                const rankingList = document.querySelector('.ranking-list');
+    <div class="ranking-container">
+        <div class="ranking-header">
+            <span class="trophy-icon">🏆</span>
+            <h1>RANKING</h1>
+            <p class="ranking-subtitle">Os melhores treinadores Pokémon</p>
+        </div>
 
-                const players = JSON.parse(localStorage.getItem('players')) || [];
+        <ul class="ranking-list"></ul>
 
-                players.sort((a, b) => a.tempo - b.tempo);
+        <p class="empty-message" style="display: none;">Nenhum jogador no ranking ainda. Jogue para aparecer aqui!</p>
 
-                players.forEach((player, index) => {
-                    const li = document.createElement('li');
-                    li.textContent = `${index + 1}. ${player.nome} - Tempo: ${player.tempo} segundos`;
-                    rankingList.appendChild(li);
-                });
-            });
-        </script>
-    </ul>
-    <a href="index.html">Voltar para a página de login</a>
-    <button id="clear-ranking" class="clear-button">Limpar Ranking</button>
+        <div class="ranking-actions">
+            <a href="index.html" class="btn btn-back">← Voltar ao Início</a>
+            <button id="clear-ranking" class="btn btn-clear">🗑️ Limpar Ranking</button>
+        </div>
+    </div>
+
     <script>
-        const clearButton = document.getElementById('clear-ranking');
-        clearButton.addEventListener('click', function () {
-            localStorage.removeItem('players');
-            location.reload();
+        document.addEventListener('DOMContentLoaded', function () {
+            const rankingList = document.querySelector('.ranking-list');
+            const emptyMessage = document.querySelector('.empty-message');
+            const players = JSON.parse(localStorage.getItem('players')) || [];
+
+            players.sort((a, b) => a.tempo - b.tempo);
+
+            if (players.length === 0) {
+                emptyMessage.style.display = 'block';
+                rankingList.style.display = 'none';
+            }
+
+            players.forEach((player, index) => {
+                const li = document.createElement('li');
+
+                const position = document.createElement('span');
+                position.className = 'position';
+                if (index === 0) {
+                    position.innerHTML = '🥇';
+                    li.classList.add('top-1');
+                } else if (index === 1) {
+                    position.innerHTML = '🥈';
+                    li.classList.add('top-2');
+                } else if (index === 2) {
+                    position.innerHTML = '🥉';
+                    li.classList.add('top-3');
+                } else {
+                    position.textContent = `${index + 1}º`;
+                }
+
+                const name = document.createElement('span');
+                name.className = 'player-name';
+                name.textContent = player.nome;
+
+                const time = document.createElement('span');
+                time.className = 'player-time';
+                time.textContent = `${player.tempo}s`;
+
+                li.appendChild(position);
+                li.appendChild(name);
+                li.appendChild(time);
+                rankingList.appendChild(li);
+            });
+
+            const clearButton = document.getElementById('clear-ranking');
+            clearButton.addEventListener('click', function () {
+                if (confirm('Tem certeza que deseja limpar o ranking?')) {
+                    localStorage.removeItem('players');
+                    location.reload();
+                }
+            });
         });
     </script>
 </body>
