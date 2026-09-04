@@ -27,8 +27,8 @@ header{
     box-sizing: border-box;
 }
 .grid{
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(90px, 1fr));
+    display: flex;
+    flex-wrap: wrap;
     gap: 10px;
     max-width: 800px;
     width: 100%;
@@ -37,15 +37,13 @@ header{
 }
 .card{
     aspect-ratio: 3/4;
-    width: 100%;
-    max-width: 140px;
+    flex: 0 0 90px;
     height: auto;
     background-image: url("imagens/bgcard2.png");
     border-radius: 5px;
     position:relative;
     transition: all 350ms ease;
     transform-style: preserve-3d;
-    justify-self: center;
 }
 .face{
     width: 100%;
@@ -79,7 +77,9 @@ header{
         padding: 10px;
     }
     .grid{
-        grid-template-columns: repeat(auto-fit, minmax(70px, 1fr));
         gap: 6px;
+    }
+    .card{
+        flex: 0 0 70px;
     }
 }
