@@ -1,8 +1,4 @@
-/* ============================================
-   LOGIN SCREEN - Jogo da Memória Pokémon
-   ============================================ */
 
-/* --- Base & Background --- */
 html, body {
     height: 100%;
     margin: 0;
@@ -23,7 +19,6 @@ body {
     position: relative;
 }
 
-/* Overlay escuro sobre o fundo */
 body::before {
     content: '';
     position: absolute;
@@ -37,7 +32,6 @@ body::before {
     z-index: 0;
 }
 
-/* --- Partículas Flutuantes --- */
 .particles {
     position: fixed;
     inset: 0;
@@ -70,7 +64,6 @@ body::before {
     100% { transform: translateY(-10vh) scale(1); opacity: 0; }
 }
 
-/* --- Container Principal --- */
 .login-container {
     position: relative;
     z-index: 1;
@@ -83,7 +76,6 @@ body::before {
     box-sizing: border-box;
 }
 
-/* --- Card de Login --- */
 .login-card {
     position: relative;
     width: 100%;
@@ -106,7 +98,6 @@ body::before {
     box-sizing: border-box;
 }
 
-/* Brilho sutil no card */
 .card-glow {
     position: absolute;
     top: -50%;
@@ -132,7 +123,6 @@ body::before {
     }
 }
 
-/* --- Logo --- */
 .login-logo {
     width: clamp(180px, 50vw, 300px);
     max-width: 90%;
@@ -147,7 +137,6 @@ body::before {
     50%      { transform: translateY(-8px); }
 }
 
-/* --- Textos --- */
 .login-title {
     color: #ffffff;
     font-size: clamp(22px, 5.5vw, 32px);
@@ -167,7 +156,6 @@ body::before {
     text-align: center;
 }
 
-/* --- Formulário --- */
 .login_form {
     width: 100%;
     display: flex;
@@ -176,7 +164,6 @@ body::before {
     gap: 16px;
 }
 
-/* Wrapper do input */
 .input-wrapper {
     position: relative;
     width: 100%;
@@ -224,7 +211,6 @@ body::before {
     opacity: 1;
 }
 
-/* --- Botão --- */
 .bt_login {
     width: 100%;
     padding: 14px 24px;
@@ -267,8 +253,6 @@ body::before {
     transform: translateY(0);
     box-shadow: 0 2px 10px rgba(255, 204, 0, 0.3);
 }
-
-/* Botão desabilitado */
 .bt_login:disabled {
     background: rgba(255, 255, 255, 0.08);
     color: rgba(255, 255, 255, 0.25);
@@ -281,7 +265,6 @@ body::before {
     opacity: 0.3;
 }
 
-/* --- Link do Ranking --- */
 .ranking-link {
     display: inline-flex;
     align-items: center;
@@ -302,7 +285,6 @@ body::before {
     background: rgba(255, 204, 0, 0.08);
 }
 
-/* --- Pokébola Decorativa --- */
 .pokeball-decoration {
     width: 200px;
     height: 200px;
@@ -324,9 +306,6 @@ body::before {
     opacity: 0.4;
 }
 
-/* ============================================
-   RESPONSIVO
-   ============================================ */
 @media screen and (max-width: 480px) {
     .login-card {
         padding: 28px 24px 24px;

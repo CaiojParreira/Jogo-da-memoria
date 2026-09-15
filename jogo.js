@@ -46,7 +46,7 @@ const checkEndGame = () => {
     players.sort((a, b) => a.tempo - b.tempo);
     localStorage.setItem('players', JSON.stringify(players));
     
-    window.location = 'ranking.html';
+    window.location.href = './ranking.html';
   }
 }
 
