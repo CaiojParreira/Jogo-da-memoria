@@ -1,79 +1,376 @@
-html, body{
+/* ============================================
+   LOGIN SCREEN - Jogo da Memória Pokémon
+   ============================================ */
+
+/* --- Base & Background --- */
+html, body {
     height: 100%;
     margin: 0;
     overflow: hidden;
 }
-body{
+
+body {
     display: flex;
-    flex-direction: column;
-    text-align: center;
     align-items: center;
     justify-content: center;
     width: 100%;
+    min-height: 100vh;
     background-image: url("imagens/img1.jpg");
-    min-width: 100%;
     background-size: cover;
     background-repeat: no-repeat;
+    background-position: center;
+    font-family: 'Outfit', Arial, Helvetica, sans-serif;
+    position: relative;
 }
-h1{
-    color: rgb(255, 255, 255);
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: clamp(24px, 6vw, 40px);
-    margin-bottom: 20px;
-    font-weight: bolder;
-    text-shadow: 2px 2px 4px rgb(12, 12, 12);
-    text-align: center;
-    margin-top: 10px;
-    padding: 0 10px;
+
+/* Overlay escuro sobre o fundo */
+body::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        135deg,
+        rgba(10, 10, 40, 0.75) 0%,
+        rgba(30, 20, 80, 0.6) 50%,
+        rgba(10, 10, 40, 0.75) 100%
+    );
+    z-index: 0;
 }
-.login_input{
-    padding: 10px;
-    border-radius: 15px;
-    font-size: 20px;
-    outline: none;
-    width: 80%;
-    max-width: 250px;
+
+/* --- Partículas Flutuantes --- */
+.particles {
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    overflow: hidden;
 }
-.login{
-    padding: clamp(10px, 3vw, 30px) clamp(20px, 8vw, 100px) clamp(20px, 6vw, 60px);
+
+.particle {
+    position: absolute;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: rgba(255, 220, 50, 0.6);
+    animation: float-up linear infinite;
+    opacity: 0;
+}
+
+.particle:nth-child(1) { left: 10%; animation-duration: 8s; animation-delay: 0s;   width: 4px; height: 4px; }
+.particle:nth-child(2) { left: 25%; animation-duration: 10s; animation-delay: 2s;  width: 6px; height: 6px; }
+.particle:nth-child(3) { left: 45%; animation-duration: 7s; animation-delay: 4s;   width: 3px; height: 3px; }
+.particle:nth-child(4) { left: 65%; animation-duration: 9s; animation-delay: 1s;   width: 5px; height: 5px; }
+.particle:nth-child(5) { left: 80%; animation-duration: 11s; animation-delay: 3s;  width: 4px; height: 4px; }
+.particle:nth-child(6) { left: 92%; animation-duration: 8s; animation-delay: 5s;   width: 7px; height: 7px; }
+
+@keyframes float-up {
+    0%   { transform: translateY(100vh) scale(0); opacity: 0; }
+    10%  { opacity: 1; }
+    90%  { opacity: 0.8; }
+    100% { transform: translateY(-10vh) scale(1); opacity: 0; }
+}
+
+/* --- Container Principal --- */
+.login-container {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     width: 100%;
+    max-width: 440px;
+    padding: 20px;
     box-sizing: border-box;
 }
-.login_img{
-    width: clamp(200px, 45vw, 380px);
+
+/* --- Card de Login --- */
+.login-card {
+    position: relative;
+    width: 100%;
+    padding: 40px 36px 32px;
+    background: rgba(20, 15, 50, 0.75);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-radius: 24px;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    box-shadow:
+        0 20px 60px rgba(0, 0, 0, 0.5),
+        0 0 40px rgba(100, 80, 255, 0.08),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    animation: card-appear 0.6s ease-out;
+    overflow: hidden;
+    box-sizing: border-box;
+}
+
+/* Brilho sutil no card */
+.card-glow {
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(
+        circle at 30% 30%,
+        rgba(255, 220, 50, 0.04) 0%,
+        transparent 50%
+    );
+    pointer-events: none;
+}
+
+@keyframes card-appear {
+    from {
+        opacity: 0;
+        transform: translateY(30px) scale(0.95);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+/* --- Logo --- */
+.login-logo {
+    width: clamp(180px, 50vw, 300px);
     max-width: 90%;
     height: auto;
+    filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.4));
+    animation: logo-float 4s ease-in-out infinite;
+    margin-bottom: 8px;
 }
-.bt_login{
-    padding: 10px;
-    width: 200px;
-    max-width: 80%;
-    border-radius: 20px;
-    font-weight: bolder;
-    font-size: 25px;
-    border-bottom: rgb(43, 0, 235);
-    background-color:yellow;
-    color: rgb(62, 0, 248);
+
+@keyframes logo-float {
+    0%, 100% { transform: translateY(0); }
+    50%      { transform: translateY(-8px); }
+}
+
+/* --- Textos --- */
+.login-title {
+    color: #ffffff;
+    font-size: clamp(22px, 5.5vw, 32px);
+    font-weight: 800;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    text-shadow: 0 2px 10px rgba(100, 80, 255, 0.3);
+    margin: 0;
+    text-align: center;
+}
+
+.login-subtitle {
+    color: rgba(255, 255, 255, 0.55);
+    font-size: clamp(13px, 3.5vw, 16px);
+    font-weight: 400;
+    margin: 4px 0 20px;
+    text-align: center;
+}
+
+/* --- Formulário --- */
+.login_form {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+}
+
+/* Wrapper do input */
+.input-wrapper {
+    position: relative;
+    width: 100%;
+}
+
+.input-icon {
+    position: absolute;
+    left: 16px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 18px;
+    opacity: 0.6;
+    pointer-events: none;
+    transition: opacity 0.3s;
+}
+
+.login_input {
+    width: 100%;
+    padding: 14px 18px 14px 44px;
+    border-radius: 14px;
+    font-size: 16px;
+    font-family: 'Outfit', sans-serif;
+    font-weight: 500;
+    outline: none;
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    background: rgba(255, 255, 255, 0.07);
+    color: #ffffff;
+    transition: all 0.3s ease;
+    box-sizing: border-box;
+}
+
+.login_input::placeholder {
+    color: rgba(255, 255, 255, 0.35);
+    font-weight: 400;
+}
+
+.login_input:focus {
+    border-color: rgba(255, 220, 50, 0.5);
+    background: rgba(255, 255, 255, 0.1);
+    box-shadow: 0 0 20px rgba(255, 220, 50, 0.1);
+}
+
+.login_input:focus ~ .input-icon,
+.input-wrapper:focus-within .input-icon {
+    opacity: 1;
+}
+
+/* --- Botão --- */
+.bt_login {
+    width: 100%;
+    padding: 14px 24px;
+    border-radius: 14px;
+    font-weight: 700;
+    font-size: 18px;
+    font-family: 'Outfit', sans-serif;
+    letter-spacing: 1.5px;
     cursor: pointer;
+    border: none;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    background: linear-gradient(135deg, #ffcc00 0%, #ff9500 100%);
+    color: #1a1a2e;
+    box-shadow: 0 4px 20px rgba(255, 204, 0, 0.35);
+    transition: all 0.3s ease;
+    transform: translateY(0);
 }
-.bt_login:hover{
-    color: yellow;
-    background-color: rgb(21, 83, 255);
+
+.btn-icon {
+    font-size: 14px;
+    transition: transform 0.3s ease;
 }
-.bt_login:disabled{
-    background-color: #eee;
-    border: 2px solid #969595;
-    color: #aaa;
-    cursor: auto;
+
+.bt_login:hover:not(:disabled) {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 30px rgba(255, 204, 0, 0.5);
+    background: linear-gradient(135deg, #ffdd33 0%, #ffaa22 100%);
 }
-a{
-    color:yellow;
-    text-decoration: underline;
-    font-size: clamp(18px, 5vw, 30px);
-    font-weight: bolder;
-    text-shadow: 2px 2px 4px rgb(12, 12, 12);
+
+.bt_login:hover:not(:disabled) .btn-icon {
+    transform: translateX(4px);
 }
-a:hover{
-    color:cyan;
-    text-decoration: underline;
+
+.bt_login:active:not(:disabled) {
+    transform: translateY(0);
+    box-shadow: 0 2px 10px rgba(255, 204, 0, 0.3);
+}
+
+/* Botão desabilitado */
+.bt_login:disabled {
+    background: rgba(255, 255, 255, 0.08);
+    color: rgba(255, 255, 255, 0.25);
+    box-shadow: none;
+    cursor: not-allowed;
+    border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.bt_login:disabled .btn-icon {
+    opacity: 0.3;
+}
+
+/* --- Link do Ranking --- */
+.ranking-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    margin-top: 16px;
+    color: rgba(255, 255, 255, 0.5);
+    text-decoration: none;
+    font-size: 15px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    transition: all 0.3s ease;
+    padding: 8px 16px;
+    border-radius: 10px;
+}
+
+.ranking-link:hover {
+    color: #ffcc00;
+    background: rgba(255, 204, 0, 0.08);
+}
+
+/* --- Pokébola Decorativa --- */
+.pokeball-decoration {
+    width: 200px;
+    height: 200px;
+    position: fixed;
+    bottom: -60px;
+    right: -40px;
+    border-radius: 50%;
+    border: 6px solid rgba(255, 255, 255, 0.06);
+    background: linear-gradient(
+        to bottom,
+        rgba(255, 50, 50, 0.08) 0%,
+        rgba(255, 50, 50, 0.08) 48%,
+        rgba(255, 255, 255, 0.06) 48%,
+        rgba(255, 255, 255, 0.06) 52%,
+        rgba(255, 255, 255, 0.04) 52%,
+        rgba(255, 255, 255, 0.04) 100%
+    );
+    pointer-events: none;
+    opacity: 0.4;
+}
+
+/* ============================================
+   RESPONSIVO
+   ============================================ */
+@media screen and (max-width: 480px) {
+    .login-card {
+        padding: 28px 24px 24px;
+        border-radius: 20px;
+    }
+
+    .login-title {
+        font-size: 22px;
+    }
+
+    .login-subtitle {
+        font-size: 13px;
+    }
+
+    .login_input {
+        padding: 12px 16px 12px 40px;
+        font-size: 15px;
+    }
+
+    .bt_login {
+        padding: 12px 20px;
+        font-size: 16px;
+    }
+
+    .pokeball-decoration {
+        width: 140px;
+        height: 140px;
+        bottom: -40px;
+        right: -30px;
+    }
+}
+
+@media screen and (max-height: 600px) {
+    .login-logo {
+        width: clamp(120px, 30vw, 200px);
+        margin-bottom: 4px;
+    }
+
+    .login-card {
+        padding: 20px 24px;
+        gap: 2px;
+    }
+
+    .login-subtitle {
+        margin: 2px 0 12px;
+    }
 }
